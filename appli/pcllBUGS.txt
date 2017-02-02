@@ -1,0 +1,15 @@
+## POWER CLOGLOG
+model {
+	for(i in 1:n) {
+		y[i] ~ dbern(p[i])
+		pl[i] <- 1-exp(-exp(m[i]))
+      		m[i] <- beta.star + beta1*(x[i]-mean(x[]))
+		p[i]<- pow(pl[i],lambda)
+	}
+	
+    	beta0<- beta.star - beta1*mean(x[])
+	beta1 ~ dnorm(0.0,1.0E-3)
+	beta.star ~ dnorm(0.0,1.0E-3)
+    	loglambda ~ dunif(-2,2)
+    	lambda<-exp(loglambda)
+}

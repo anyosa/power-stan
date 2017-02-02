@@ -1,0 +1,14 @@
+model {
+	for(i in 1:n) {
+		y[i] ~ dbern(p[i])
+      		pl[i]<- 0.5+(arctan(m[i])/3.1415)
+      		m[i] <- a.star + beta1*(X[i]-mean(X[]))
+		p[i]<- pow(pl[i],lambda)
+	}
+	
+    	beta0<- a.star - beta1*mean(X[])
+	beta1 ~ dnorm(0.0,0.01)
+	a.star ~ dnorm(0.0,0.01)
+    	loglambda ~ dunif(-2,2)
+    	lambda<-exp(loglambda)
+}
